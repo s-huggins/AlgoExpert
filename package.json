@@ -1,0 +1,29 @@
+{
+  "name": "algoexpert",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-huggins/AlgoExpert.git"
+  },
+  "author": "Stuart Huggins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s-huggins/AlgoExpert/issues"
+  },
+  "homepage": "https://github.com/s-huggins/AlgoExpert#readme",
+  "description": "",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "dev": "nodemon",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.21",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}
