@@ -1,5 +1,5 @@
+import { Tree, TreeNode } from '../common/tree';
 import { bstFindClosestValue } from './bst-closest-value';
-import { Tree, TreeNode } from './tree';
 
 const bst1: Tree<number> = new Tree<number>(new TreeNode(10));
 bst1.root.left = new TreeNode(5, new TreeNode(2), new TreeNode(5));
@@ -33,49 +33,51 @@ bst2.root.right.right.right = new TreeNode(4);
  *            4
  */
 
-describe.each([
-  {
-    bst: bst1,
-    target: 15,
-    expected: 15
-  },
-  {
-    bst: bst1,
-    target: 21,
-    expected: 22
-  },
-  {
-    bst: bst1,
-    target: 12,
-    expected: 13
-  },
-  {
-    bst: bst1,
-    target: 14,
-    expected: 14
-  },
-  {
-    bst: bst1,
-    target: 100,
-    expected: 22
-  },
-  {
-    bst: bst1,
-    target: -100,
-    expected: 2
-  },
-  {
-    bst: bst2,
-    target: 1,
-    expected: 1
-  },
-  {
-    bst: bst2,
-    target: 5,
-    expected: 4
-  }
-])('bstFindClosestValue($bst, $target)', ({ bst, target, expected }) => {
-  test(`returns ${expected}`, () => {
-    expect(bstFindClosestValue(bst, target)).toEqual(expected);
+describe('bst-closest-value', () => {
+  describe.each([
+    {
+      bst: bst1,
+      target: 15,
+      expected: 15
+    },
+    {
+      bst: bst1,
+      target: 21,
+      expected: 22
+    },
+    {
+      bst: bst1,
+      target: 12,
+      expected: 13
+    },
+    {
+      bst: bst1,
+      target: 14,
+      expected: 14
+    },
+    {
+      bst: bst1,
+      target: 100,
+      expected: 22
+    },
+    {
+      bst: bst1,
+      target: -100,
+      expected: 2
+    },
+    {
+      bst: bst2,
+      target: 1,
+      expected: 1
+    },
+    {
+      bst: bst2,
+      target: 5,
+      expected: 4
+    }
+  ])('bstFindClosestValue($bst, $target)', ({ bst, target, expected }) => {
+    test(`returns ${expected}`, () => {
+      expect(bstFindClosestValue(bst, target)).toEqual(expected);
+    });
   });
 });

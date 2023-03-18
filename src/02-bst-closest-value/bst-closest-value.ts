@@ -1,4 +1,4 @@
-import { Tree, TreeNode } from './tree';
+import { Tree, TreeNode } from '../common/tree';
 
 /**
  * Finds the closest value in a binary search tree to a given target value.
