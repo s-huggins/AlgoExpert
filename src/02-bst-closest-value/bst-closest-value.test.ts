@@ -1,10 +1,10 @@
-import { Tree, TreeNode } from '../common/tree';
+import { BinaryTree, BinaryTreeNode } from '../common/binary-tree';
 import { bstFindClosestValue } from './bst-closest-value';
 
-const bst1: Tree<number> = new Tree<number>(new TreeNode(10));
-bst1.root.left = new TreeNode(5, new TreeNode(2), new TreeNode(5));
-bst1.root.right = new TreeNode(15, new TreeNode(13), new TreeNode(22));
-bst1.root.right.left!.right = new TreeNode(14);
+const bst1: BinaryTree<number> = new BinaryTree<number>(new BinaryTreeNode(10));
+bst1.root.left = new BinaryTreeNode(5, new BinaryTreeNode(2), new BinaryTreeNode(5));
+bst1.root.right = new BinaryTreeNode(15, new BinaryTreeNode(13), new BinaryTreeNode(22));
+bst1.root.right.left!.right = new BinaryTreeNode(14);
 
 /**
  *  bst1 has form
@@ -17,10 +17,10 @@ bst1.root.right.left!.right = new TreeNode(14);
  *           14
  */
 
-const bst2: Tree<number> = new Tree<number>(new TreeNode(1));
-bst2.root.right = new TreeNode(2);
-bst2.root.right.right = new TreeNode(3);
-bst2.root.right.right.right = new TreeNode(4);
+const bst2: BinaryTree<number> = new BinaryTree<number>(new BinaryTreeNode(1));
+bst2.root.right = new BinaryTreeNode(2);
+bst2.root.right.right = new BinaryTreeNode(3);
+bst2.root.right.right.right = new BinaryTreeNode(4);
 
 /**
  *  bst2 has form

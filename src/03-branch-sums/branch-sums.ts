@@ -1,4 +1,4 @@
-import { Tree, TreeNode } from '../common/tree';
+import { BinaryTree, BinaryTreeNode } from '../common/binary-tree';
 
 /**
  * Computes the branch sums, which are found by summing the node values found along a path from the root to a node with no children.
@@ -6,14 +6,14 @@ import { Tree, TreeNode } from '../common/tree';
  * @param tree A binary tree
  * @returns An array of all branch sums in the tree
  */
-export function branchSums(tree: Tree<number>): number[] {
+export function branchSums(tree: BinaryTree<number>): number[] {
   // mutated by recursive calls
   const branchSums: number[] = [];
   branchSumsHelper(tree.root, 0, branchSums);
   return branchSums;
 }
 
-function branchSumsHelper(node: TreeNode<number> | null, runningBranchSum: number, completeBranchSums: number[]) {
+function branchSumsHelper(node: BinaryTreeNode<number> | null, runningBranchSum: number, completeBranchSums: number[]) {
   if (!node) {
     return;
   }
@@ -36,11 +36,11 @@ function branchSumsHelper(node: TreeNode<number> | null, runningBranchSum: numbe
  * @param tree A binary tree
  * @returns An array of all branch sums in the tree
  */
-export function branchSumsV2(tree: Tree<number>): number[] {
+export function branchSumsV2(tree: BinaryTree<number>): number[] {
   return branchSumsHelperV2(tree.root);
 }
 
-function branchSumsHelperV2(node: TreeNode<number> | null): number[] {
+function branchSumsHelperV2(node: BinaryTreeNode<number> | null): number[] {
   let branchSums: number[] = [];
   if (node) {
     if (!node.left && !node.right) {

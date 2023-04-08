@@ -1,14 +1,14 @@
-import { Tree, TreeNode } from '../common/tree';
+import { BinaryTree, BinaryTreeNode } from '../common/binary-tree';
 import { branchSums, branchSumsV2 } from './branch-sums';
 
-const tree1: Tree<number> = new Tree<number>(new TreeNode(1));
-tree1.root.left = new TreeNode(2, new TreeNode(4), new TreeNode(5));
-tree1.root.left.left = new TreeNode(4, new TreeNode(8), new TreeNode(9));
-tree1.root.left.right = new TreeNode(5, new TreeNode(10), null);
-tree1.root.right = new TreeNode(3, new TreeNode(6), new TreeNode(7));
+const tree1: BinaryTree<number> = new BinaryTree<number>(new BinaryTreeNode(1));
+tree1.root.left = new BinaryTreeNode(2, new BinaryTreeNode(4), new BinaryTreeNode(5));
+tree1.root.left.left = new BinaryTreeNode(4, new BinaryTreeNode(8), new BinaryTreeNode(9));
+tree1.root.left.right = new BinaryTreeNode(5, new BinaryTreeNode(10), null);
+tree1.root.right = new BinaryTreeNode(3, new BinaryTreeNode(6), new BinaryTreeNode(7));
 
 /**
- *    tree has form
+ *    tree1 has form
  *              1
  *           /     \
  *         2        3
@@ -19,13 +19,13 @@ tree1.root.right = new TreeNode(3, new TreeNode(6), new TreeNode(7));
  *
  */
 
-const tree2: Tree<number> = new Tree<number>(new TreeNode(1));
-tree2.root.right = new TreeNode(2);
-tree2.root.right.right = new TreeNode(3);
-tree2.root.right.right.right = new TreeNode(4);
+const tree2: BinaryTree<number> = new BinaryTree<number>(new BinaryTreeNode(1));
+tree2.root.right = new BinaryTreeNode(2);
+tree2.root.right.right = new BinaryTreeNode(3);
+tree2.root.right.right.right = new BinaryTreeNode(4);
 
 /**
- *  bst2 has form
+ *  tree2 has form
  *      1
  *       \
  *        2
@@ -46,7 +46,7 @@ describe('branch-sums', () => {
       expectedBranchSums: [10]
     },
     {
-      tree: new Tree(new TreeNode(1)),
+      tree: new BinaryTree(new BinaryTreeNode(1)),
       expectedBranchSums: [1]
     }
   ])('branchSums($tree)', ({ tree, expectedBranchSums }) => {

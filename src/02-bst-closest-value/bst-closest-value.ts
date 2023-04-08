@@ -1,4 +1,4 @@
-import { Tree, TreeNode } from '../common/tree';
+import { BinaryTree, BinaryTreeNode } from '../common/binary-tree';
 
 /**
  * Finds the closest value in a binary search tree to a given target value.
@@ -8,9 +8,9 @@ import { Tree, TreeNode } from '../common/tree';
  * @param targetValue The number we are trying to find the closest tree node value to
  * @returns The closest value found in the tree to @param targetValue
  */
-export function bstFindClosestValue(bst: Tree<number>, targetValue: number): number {
+export function bstFindClosestValue(bst: BinaryTree<number>, targetValue: number): number {
   let closestValueFound: number = Number.POSITIVE_INFINITY;
-  let currentNode: TreeNode<number> | null = bst.root;
+  let currentNode: BinaryTreeNode<number> = bst.root;
   while (currentNode) {
     const nodeValueDistanceToTarget: number = Math.abs(currentNode.value - targetValue);
     const closestValueDistanceToTarget: number = Math.abs(closestValueFound - targetValue);
