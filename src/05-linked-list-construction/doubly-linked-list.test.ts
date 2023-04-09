@@ -6,6 +6,9 @@ function createFromList<T>(list: T[]): DoublyLinkedList<T> {
     const node: Node<T> = new Node(element);
     if (index === 0) {
       linkedList.setHead(node);
+      if (list.length === 1) {
+        linkedList.setTail(node);
+      }
     } else {
       linkedList.insertAfter(linkedList.tail, node);
     }
@@ -32,7 +35,6 @@ describe('doubly linked list', () => {
     }
   ])('getNode($position)', ({ linkedList, position, expectedNodeValue }) => {
     test('gets node at position correctly', () => {
-      linkedList.forEach(console.log);
       const node: Node<string> = linkedList.getNode(position);
       expect(node.value).toBe(expectedNodeValue);
     });
@@ -78,5 +80,88 @@ describe('doubly linked list', () => {
     expect(oldHead.next).toBe(nodeB);
   });
 
-  // TODO: testing
+  test('sets tail using node not in list correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'B', 'C', 'D', 'E']);
+    const oldTail: Node<string> = linkedList.tail;
+    const nodeD: Node<string> = linkedList.getNode(4);
+    const newTail: Node<string> = new Node('Z');
+    linkedList.setTail(newTail);
+    expect(linkedList.tail).toBe(newTail);
+    expect(linkedList.tail.previous).toBe(oldTail);
+    expect(linkedList.tail.next).toBe(null);
+    expect(oldTail.next).toBe(newTail);
+  });
+
+  test('removes head correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'B', 'C', 'D', 'E']);
+    const oldHead: Node<string> = linkedList.head;
+    const nodeB: Node<string> = linkedList.getNode(2);
+    linkedList.remove(linkedList.head);
+    expect(oldHead.previous).toBe(null);
+    expect(oldHead.next).toBe(null);
+    expect(linkedList.head).toBe(nodeB);
+    expect(linkedList.head.previous).toBe(null);
+  });
+
+  test('removes tail correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'B', 'C', 'D', 'E']);
+    const oldTail: Node<string> = linkedList.tail;
+    const nodeD: Node<string> = linkedList.getNode(4);
+    linkedList.remove(linkedList.tail);
+    expect(oldTail.previous).toBe(null);
+    expect(oldTail.next).toBe(null);
+    expect(linkedList.tail).toBe(nodeD);
+    expect(linkedList.tail.next).toBe(null);
+  });
+
+  test('removes node correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'B', 'C', 'D', 'E']);
+    const nodeC: Node<string> = linkedList.getNode(3);
+    const nodeB: Node<string> = linkedList.getNode(2);
+    const nodeD: Node<string> = linkedList.getNode(4);
+    linkedList.remove(nodeC);
+    expect(nodeC.previous).toBe(null);
+    expect(nodeC.next).toBe(null);
+    expect(nodeB.next).toBe(nodeD);
+    expect(nodeD.previous).toBe(nodeB);
+  });
+
+  test('removes node from singleton list correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A']);
+    linkedList.remove(linkedList.head);
+    expect(linkedList.head).toBe(null);
+    expect(linkedList.tail).toBe(null);
+  });
+
+  test('removes all correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'A', 'Z', 'A']);
+    const nodeZ: Node<string> = linkedList.getNode(3);
+    linkedList.removeAll('A');
+    expect(linkedList.head).toBe(nodeZ);
+    expect(linkedList.tail).toBe(nodeZ);
+  });
+
+  test('inserts after correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'B', 'C', 'D', 'E']);
+    const newNode: Node<string> = new Node('X');
+    const nodeB: Node<string> = linkedList.getNode(2);
+    const nodeC: Node<string> = linkedList.getNode(3);
+    linkedList.insertAfter(nodeB, newNode);
+    expect(newNode.next).toBe(nodeC);
+    expect(newNode.previous).toBe(nodeB);
+    expect(nodeB.next).toBe(newNode);
+    expect(nodeC.previous).toBe(newNode);
+  });
+
+  test('inserts before correctly', () => {
+    const linkedList: DoublyLinkedList<string> = createFromList(['A', 'B', 'C', 'D', 'E']);
+    const newNode: Node<string> = new Node('X');
+    const nodeC: Node<string> = linkedList.getNode(3);
+    const nodeB: Node<string> = linkedList.getNode(2);
+    linkedList.insertBefore(nodeC, newNode);
+    expect(newNode.next).toBe(nodeC);
+    expect(newNode.previous).toBe(nodeB);
+    expect(nodeB.next).toBe(newNode);
+    expect(nodeC.previous).toBe(newNode);
+  });
 });
